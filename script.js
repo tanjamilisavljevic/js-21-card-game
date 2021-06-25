@@ -1,4 +1,9 @@
 
+
+function addCardStyling(element) {
+    document.getElementById(element).classList.add('card');
+}
+
 document.getElementById('drawButton').addEventListener('click', function () {
 
     function getRandomCard(max) {
@@ -11,10 +16,13 @@ document.getElementById('drawButton').addEventListener('click', function () {
     document.getElementById("card1").textContent = '' + card1;
     document.getElementById("card2").textContent = '' + card2;
 
-    if (card1.value + card2.value === 21){
+    addCardStyling('card1');
+    addCardStyling('card2');
+
+
+    if (card1.value + card2.value === 21) {
         alert("You win")
-    }
-    else {
+    } else {
         alert("You lose")
     }
 })

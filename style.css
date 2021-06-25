@@ -1,0 +1,18 @@
+body{
+    display: flex;
+    flex-flow: column;
+}
+.cardWrap{
+    display: flex;
+    justify-content: center;
+}
+.buttonWrap{
+    justify-content: center;
+    display: flex;
+}
+.card{
+    margin: 5%;
+    padding: 5%;
+    background-color: bisque;
+    border-radius: 16px;
+}
