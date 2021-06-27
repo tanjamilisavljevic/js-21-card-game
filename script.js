@@ -1,34 +1,51 @@
-const cardSymbols =['♠', '♣', '♥', '♦']
+
 function getRandomSymbol() {
     let randomIndex = Math.floor(Math.random() * cardSymbols.length);
-    return cardSymbols[randomIndex]}
-
+    return cardSymbols[randomIndex]
+}
 
 function addCardStyling(element) {
     document.getElementById(element).classList.add('card');
 }
 
+const cardSymbols = ['♠', '♣', '♥', '♦']
+
 document.getElementById('drawButton').addEventListener('click', function () {
+    fetch('api.json')
+        .then(
+            function (response) {
+                return response.json();
+            }
+        )
+        .then(playGame)
+});
+function shuffle(cards) {
+    cards.sort(() => Math.random() - 0.5);
+}
 
-    function getRandomCard(max) {
-        return Math.floor(Math.random() * max + 1);
-    }
+function draw(cards) {
+    return cards.pop();
+}
 
-    let card1text = getRandomCard(14);
-    let card2text = getRandomCard(14);
+function playGame(cards) {
 
-    document.getElementById("card1text").textContent = '' + card1text;
+    shuffle(cards)
+
+    const card1 = draw(cards);
+    const card2 = draw(cards);
+
+    document.getElementById("card1text").textContent = '' + card1.name;
     document.getElementById("randomSymbol1").innerHTML = getRandomSymbol();
-    document.getElementById("card2text").textContent = '' + card2text;
+    document.getElementById("card2text").textContent = '' + card2.name;
     document.getElementById("randomSymbol2").innerHTML = getRandomSymbol();
 
     addCardStyling('card1');
     addCardStyling('card2');
 
 
-    if (card1text.value + card2text.value === 21) {
+    if (card1.value + card2.value === 21) {
         alert("You win")
     } else {
         alert("You lose")
     }
-})
+}
